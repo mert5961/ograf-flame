@@ -188,11 +188,14 @@ if (statSync(args.input).isDirectory()) {
     });
   } catch (error) {
     fail(
-      `Could not export the .ogs template: ${String(error.stderr || error.message)
-        .trim()
-        .split('\n')
-        .slice(-3)
-        .join(' ')}`,
+      `Could not export the .ogs template: ${(
+        String(error.stderr || error.message)
+          .split('\n')
+          .map((line) => line.trim())
+          .find((line) => /^\w*Error:/.test(line)) ?? String(error.message)
+      )
+        .replace(/^\w*Error:\s*/, '')
+        .slice(0, 400)}`,
     );
   }
   templates = JSON.parse(output.trim().split('\n').at(-1)).templates;

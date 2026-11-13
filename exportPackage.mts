@@ -34,7 +34,18 @@ try {
 }
 
 type Template = { id: string; name: string; project: any };
-const set = await openProjectSetArchive(new Uint8Array(await readFile(resolve(input))));
+const bytes = new Uint8Array(await readFile(resolve(input)));
+// A .ogs is normally a zip template set; Studio's MCP tools can also save one project as plain JSON.
+const isJson = String.fromCharCode(...bytes.slice(0, 64)).trimStart().startsWith('{');
+let set: { templates: Template[]; activeTemplateId?: string };
+if (isJson) {
+  const project = JSON.parse(new TextDecoder().decode(bytes));
+  if (!Array.isArray(project.compositions))
+    throw new Error('This JSON file is not an OGraf Studio project.');
+  set = { templates: [{ id: project.id, name: project.name || 'Untitled', project }] };
+} else {
+  set = await openProjectSetArchive(bytes);
+}
 const templates: Template[] = set.templates;
 const template = templateName
   ? templates.find((t) => t.name === templateName)
