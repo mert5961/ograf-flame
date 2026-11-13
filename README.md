@@ -6,7 +6,7 @@ Autodesk Flame as clips with alpha.
 Right-click a reel in Flame, pick a template, type your text, and the graphic is rendered frame by frame in
 headless Chrome and imported as a transparent PNG sequence.
 
-![Rendered frames: animate in, hold, animate out](docs/frames.png)
+![OGraf template rendered into Flame: fill in the fields, render, the clip lands in the reel](docs/demo.gif)
 
 > **Status: experimental.** Tested on Flame 2026.2.2 on macOS. Linux should work but is untested. This is a
 > community project, not affiliated with Autodesk, Zero Density or the EBU.
@@ -22,6 +22,25 @@ headless Chrome and imported as a transparent PNG sequence.
   imports the clip into the reel you clicked.
 
 It is an offline render step, not a live Batch node: change a field and render again.
+
+![Rendered frames: animate in, hold, animate out](docs/frames.png)
+
+## Design the template with AI
+
+OGraf Studio has a built-in AI chat and an MCP server, so you can describe a graphic in plain words and let
+Claude build it as a real, editable template (layers, masks, keyframes and fields), then render it here. The
+lower third in the demo came from this prompt:
+
+> Design a premium lower third for a tech conference keynote: sleek, kinetic, cinematic. Dark glass panel, one
+> electric accent colour (cyan → violet gradient), thin animated accent line, clean modern sans-serif.
+> Bottom-left, title-safe, 1920×1080, 25 fps, **transparent background**. Animate in (about 1.2 s): the accent
+> line draws on, the panel wipes open with a mask reveal, the name slides up letter by letter with a slight
+> blur-to-sharp, the title fades in 0.2 s later. Hold fully still. Animate out (about 0.8 s) in reverse.
+> Operator fields: "Name", "Title", "Accent colour". It must export for **non-real-time rendering**: no clocks,
+> tickers, live data, video or webcam inputs.
+
+Asking for a transparent background, a still hold, labelled fields and non-real-time export gives a template that
+renders cleanly in Flame.
 
 ## Requirements
 
