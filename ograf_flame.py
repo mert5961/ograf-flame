@@ -1,15 +1,43 @@
 """
-OGraf Studio -> Autodesk Flame 2026 bridge.
+Script Name: OGraf Flame
+Script Version: 1.0.0
+Flame Version: 2026
+Written by: mert5961
+Creation Date: 11.13.26
+Update Date: 11.13.26
 
-Adds "OGraf > Render OGraf Graphic..." to the Media Panel right-click menu and the
-Flame main menu. Picks an OGraf Studio template (.ogs set, exported .ograf.zip, or
-extracted package folder), lets you edit its fields, renders it offline in headless
-Chrome to a transparent PNG sequence (renderFrames.mjs), then imports the clip into
-the selected reel / library / folder.
+Custom Action Type: Media Panel / Flame Main Menu
 
-Install: run ./install.sh (links this folder into /opt/Autodesk/shared/python).
-Then restart Flame or rescan hooks
-(Flame menu > Python > Rescan Python Hooks).
+Description:
+
+    Render OGraf Studio broadcast graphics (lower thirds, straps, tickers, full-screen
+    graphics) into Flame as clips with alpha.
+
+    Pick an OGraf template (.ograf.zip exported from OGraf Studio with the Non-real-time
+    or Dual profile, an extracted package folder, or a .ogs template set when an OGraf
+    Studio checkout is available), edit its text/colour fields, and the graphic is
+    rendered frame by frame in headless Chrome through the OGraf non-real-time API and
+    imported into the selected reel as a transparent PNG sequence.
+
+    Requires Node.js 22+ and Google Chrome (or Chromium / Edge).
+
+    Source, docs and issues: https://github.com/mert5961/ograf-flame
+
+Menu:
+
+    Media Panel -> right-click a reel, library or folder -> OGraf -> Render OGraf Graphic...
+    Flame Main Menu -> OGraf -> Render OGraf Graphic...
+
+To install:
+
+    Logik Portal, or: git clone https://github.com/mert5961/ograf-flame and run ./install.sh
+    Then restart Flame or Flame menu -> Python -> Rescan Python Hooks.
+
+Updates:
+
+    v1.0.0 11.13.26
+
+        Initial release.
 """
 
 import json

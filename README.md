@@ -33,6 +33,11 @@ It is an offline render step, not a live Batch node: change a field and render a
 
 ## Install
 
+**From the Logik Portal:** Flame main menu › Logik › Logik Portal › Python Scripts › **OGraf Flame** › Install.
+You still need Node.js 22+ and Chrome on the machine.
+
+**From GitHub:**
+
 ```sh
 git clone https://github.com/mert5961/ograf-flame.git
 cd ograf-flame
@@ -78,12 +83,12 @@ Options: `--template`, `--data <json|@file>`, `--fps`, `--width`, `--height`, `-
 
 ## Settings
 
-| Environment variable  | Purpose                                 |
-| --------------------- | --------------------------------------- |
-| `OGRAF_NODE`          | Node.js binary to use                   |
-| `OGRAF_CHROME`        | Chrome / Chromium binary                |
-| `OGRAF_STUDIO_DIR`    | OGraf Studio checkout for `.ogs` input  |
-| `OGRAF_FLAME_OUTPUT`  | Where renders are written               |
+| Environment variable | Purpose                                |
+| -------------------- | -------------------------------------- |
+| `OGRAF_NODE`         | Node.js binary to use                  |
+| `OGRAF_CHROME`       | Chrome / Chromium binary               |
+| `OGRAF_STUDIO_DIR`   | OGraf Studio checkout for `.ogs` input |
+| `OGRAF_FLAME_OUTPUT` | Where renders are written              |
 
 ## Limits
 
@@ -95,12 +100,12 @@ Options: `--template`, `--data <json|@file>`, `--fps`, `--width`, `--height`, `-
 
 ## Files
 
-| File               | Role                                                                          |
-| ------------------ | ----------------------------------------------------------------------------- |
-| `ograf_flame.py`   | Flame hook: menu entries, field form, runs the renderer, imports the clip    |
-| `renderFrames.mjs` | Headless-Chrome frame renderer (no npm dependencies)                          |
+| File                | Role                                                                            |
+| ------------------- | ------------------------------------------------------------------------------- |
+| `ograf_flame.py`    | Flame hook: menu entries, field form, runs the renderer, imports the clip       |
+| `renderFrames.mjs`  | Headless-Chrome frame renderer (no npm dependencies)                            |
 | `exportPackage.mts` | Builds a non-real-time package from a `.ogs` set using an OGraf Studio checkout |
-| `install.sh`       | Checks requirements and links the hook into Flame                             |
+| `install.sh`        | Checks requirements and links the hook into Flame                               |
 
 ## License
 
